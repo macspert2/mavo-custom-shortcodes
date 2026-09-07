@@ -35,19 +35,23 @@ function mavo_custom_shortcodes_enqueue_assets() {
 /**
  * Shortcode:
  * [mavo_hub_strip slug="france" text="Retrouvez aussi notre {guide France en famille}."]
+ *
+ * Optional label="..." overrides the default language-based label.
  */
 function mavo_hub_strip_shortcode( $atts ) {
     $atts = shortcode_atts(
         array(
-            'slug' => '',
-            'text' => '',
+            'slug'  => '',
+            'text'  => '',
+            'label' => '',
         ),
         $atts,
         'mavo_hub_strip'
     );
 
-    $slug = trim( (string) $atts['slug'] );
-    $text = trim( (string) $atts['text'] );
+    $slug  = trim( (string) $atts['slug'] );
+    $text  = trim( (string) $atts['text'] );
+    $label = trim( (string) $atts['label'] );
 
     if ( $slug === '' || $text === '' ) {
         return mavo_hub_strip_admin_error( 'Missing required slug or text attribute.' );
@@ -65,7 +69,9 @@ function mavo_hub_strip_shortcode( $atts ) {
         return mavo_hub_strip_admin_error( 'Invalid slug.' );
     }
 
-    $label = mavo_hub_strip_get_default_label();
+    if ( $label === '' ) {
+        $label = mavo_hub_strip_get_default_label();
+    }
 
     $before = $parsed['before'];
     $anchor = $parsed['anchor'];
