@@ -22,6 +22,29 @@
   line-height: 1.55;
 }
 
+.mv-hub-strip__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #3a3a3a;
+  line-height: 1.55;
+}
+
+.mv-hub-strip__links li + li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.mv-hub-strip__links li + li::before {
+  content: "\00b7";
+  position: absolute;
+  left: 0;
+  color: #8a8a8a;
+}
+
 .mv-hub-strip a,
 .mv-hub-strip a:link,
 .mv-hub-strip a:visited {
